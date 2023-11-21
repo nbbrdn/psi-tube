@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load embed_video_tags %}
+
+{% block content %}
+<h1 class="mb-5">ΨTube</h1>
+
+<div class="d-flex flex-wrap">
+    {% for item in videos %}
+        <div class="px-3 mb-5">
+            {% video item.url "426x240" %}
+            <div class="d-flex justify-content-start">
+                {{ item.title }}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% if partner %}
+<div>
+    <a href="{{ partner.url }}" class="btn btn-primary" target="_blank">Получить помщь психолога</a>
+</div>
+{% endif %}
+
+{% endblock %}
