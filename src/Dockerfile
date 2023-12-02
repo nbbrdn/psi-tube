@@ -1,6 +1,6 @@
 FROM python:3.11-slim
 
-WORKDIR /usr/src/app
+WORKDIR /opt/psi
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -12,9 +12,13 @@ COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
 COPY ./entrypoint.sh .
-RUN sed -i 's/\r$//g' /usr/src/app/entrypoint.sh
-RUN chmod +x /usr/src/app/entrypoint.sh
+
+RUN pwd
+RUN ls
+
+RUN sed -i 's/\r$//g' /opt/psi/entrypoint.sh
+RUN chmod +x /opt/psi/entrypoint.sh
 
 COPY . .
 
-ENTRYPOINT [ "/usr/src/app/entrypoint.sh" ]
+ENTRYPOINT [ "/opt/psi/entrypoint.sh" ]
